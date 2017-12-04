@@ -1,0 +1,45 @@
+\documentclass[babel,german,aspectratio=169]{beamer}
+\include{zpreambleSlides}
+\usepackage[author={Dennis Oliver Kubitza},draft]{pdfcomment}
+\usepackage{tikz}
+%\pdfcomment{inssert: did u miss}
+
+\begin{document}
+
+\begin{frame}<handout:0>
+	\visible{\titlepage}
+	\frametitle{Introductional Presentation}
+	\pause% es hängt an diesem Pause Befehl.... ohne den geht es sonst nicht
+	\vspace{50mm}
+	% jetzt kommt noch eine Logoseite. Dann klappt alles wie gewohnt.
+	\visible{\titlepage}
+\end{frame}	
+
+\begin{frame}
+\frametitle{Introductional Presentation}
+\begin{center}
+\begin{tabular}{ll}
+	 $\ast$ & \textbf{Graph kernels for RDF data.}\\
+	 & Lösch, U., Bloehdorn, S., \& Rettinger, A. (2012).\\
+	 & The Semantic Web: Research and Applications, 134-148\\
+	 & \href{https://doi.org/10.1007/978-3-642-30284-8_16}{\color{blue}10.1007/978-3-642-30284-8\_16} \\
+	  & 2012\\
+\end{tabular} 
+\vspace{5mm}
+\end{center}
+
+\end{frame}
+
+%\include{ch0_Allgemeine_Infos}
+\include{5-min-intro}
+%Tag2
+%\include{ch2_Datenstruktur}
+%% bis Dataframes Teil 1
+%\include{ch3_Im_Export}
+
+%Tag 3 ab Funktionen - for-Schleifen
+%\include{ch4_Funktionen}
+%\include{ch5_Grafiken}
+%\include{ch6_Regression}
+
+\end{document}

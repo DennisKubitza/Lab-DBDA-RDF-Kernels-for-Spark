@@ -1,0 +1,99 @@
+\section{RDF-Kernels}
+\subsection{Motivation}
+\begin{frame}[fragile,t]
+\frametitle{Combining RDF with Machine learing}
+
+ \begin{tikzpicture}
+  \draw[thick,rounded corners=1pt] (0,0) -- (6,6) -- (1.5,5) 
+   -- (3,6) -- (3,0) -- (0,0);
+  \end{tikzpicture}
+
+\end{frame}
+
+\subsection{Kernel Based Machine Learning}
+
+
+\subsection{Kernels for RDF}
+
+\subsection{Performance}
+
+\section{Implementation}
+
+\begin{frame}[fragile,t]
+\frametitle{Basic Idea}
+\begin{itemize}
+\item Build an Interface for the mangement of kernel information / values. 
+\begin{itemize}
+\pause
+\item Give the possibility to use User defined Update/Deletation algorithms and kernels.
+\pause 
+\item Provide the defined example Kernels with efficient implementation of Update/Deletation
+
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Computation of Predefined Kernels}
+\begin{itemize}
+\item Use Sansa's Graph Querying for Calculation of Trees, Paths.
+\pause
+\item[+] Faster than Sparks RDD querying. 
+\pause
+\item[+] Computational Performance will scale up with SANSA's performance.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Value Storage}
+Two ideas:
+\pause
+\begin{enumerate}
+\item Store Kernel-Values directly in original RDF
+\begin{itemize}
+	\item [+] All information is provied in Consistent Format.
+	\item [+] Induces a Distance Graph on Original RDF.
+	\item [+] Can be used for further analysis outside of Sansa
+	\pause
+	\item [-] Do we really want to store everything permanently in the Dataset ?
+	\item [-] ML-Algorithms need a lot of quering for extraction of Kernel Values.
+\end{itemize}
+\pause
+\item Store Kernel-Values in seperate Structure.
+\begin{itemize}
+	\item [+] No Changes on original RDF.
+	\item [+] Only relevant Information for ML/DM. 
+	\pause
+	\item [-] What size ? (Has to be Scalable, e.g updates )
+	\item [-] What structure ?  (f.e Distance Matrix: Inefficient if Sparse)
+	\item [-] Has to be a know format ! Otherwise not user friendly.
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{new Idea}
+\begin{itemize}
+\item Use an RDF for storing the Kernel values. \pause
+\item Offer both possiblities:
+\begin{enumerate}
+\item Store Kernels in original RDF
+\item Store Kernels in seperate reduced RDF (Original RDF without any Predicates and Attributes, except Kernel Oriented information)
+\end{enumerate}
+\pause
+\item[+] Same implementation for both variants. Only different target for saving the values
+\item[+] User can pick which one he favours.
+\item[+] In each way the user is familiar with the storage format.
+\item[+] A posteriori the RDFs can still be merged.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Erstellt von Matthias Duch 2017       
+%				  Mehrfach abgeändert von Dennis Kubitza 2017
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[ngerman]{babel}\usepackage[babel=true]{microtype}
+\usepackage[utf8]{inputenc}%Without utf8x
+\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{url}\usepackage{color}\usepackage{tikz}\usetikzlibrary{shadows,arrows,shapes,calc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,amsbsy}%$\varmathbb{R}$
+\usepackage{graphicx} %\includegraphics[width=0.7\textwidth]{bild.jpg}
+\usepackage{placeins} %for \FloatBarrier
+\usepackage{setspace}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{smartdiagram}
+\usepackage{dcolumn}%für Stargazerimport
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Angaben auf den Folien                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{"Graph Kernels for RDF Data"$^\text{*}$- Summary and implementation ideas}
+\author{Dennis Oliver Kubitza}
+\date{\today}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            Themeneinstellungen                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%remove the icon
+\setbeamertemplate{bibliography item}{}
+%remove line breaks
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
+\newcommand*\keystroke[1]{\tikz[baseline=(key.base)]\node[draw, fill=white, drop shadow={shadow xshift=0.25ex,shadow yshift=-0.25ex,fill=black,opacity=0.75}, rectangle, rounded corners=2pt, inner sep=1pt, line width=0.5pt, font=\scriptsize\sffamily ](key) {#1\strut};}
+\newsavebox{\codebox}% For saving code
+
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\makeatletter
+\setbeamertemplate{footline}{
+  \hbox{%
+  \begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{title in head/foot}\inserttitle
+  \end{beamercolorbox}}%
+}
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsubsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\addto\captionsngerman{%Abkürzen der Überschriften
+\renewcommand{\figurename}{Abb.}
+\renewcommand{\tablename}{Tab.}
+}
+\usepackage{framed}
+\newcommand\result[1]{\begin{framed}#1\end{framed}}
+
+\definecolor{themenrot}{RGB}{163,0,0}
+\definecolor{themengruen}{RGB}{0,82,41}
+\input{settingsListing}
+\captionsetup{justification=centering}
+\setbeamercolor*{item}{fg=themengruen}% make bullets red fit to greentheme
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\bcode}[1]{\texttt{\textbf{#1}}} %fetter Code
+\newcommand{\ccode}[1]{\begin{center}\texttt{\textbf{\Large{#1}}}\end{center}} 
+\makeatother
+\usecolortheme{spruce}% gruenes Theme
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Einstellungen fuer die Uebersicht am Anfang jedes Kapitels             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AtBeginSection[]{
+\begin{frame}<beamer|handout>
+\frametitle{Content Overview}
+\tableofcontents[currentsection]%,hideallsubsections]
+\end{frame}}
+%Übersicht am Anfang einer Subsection
+\AtBeginSubsection[]{
+\begin{frame}<beamer|handout>
+\frametitle{Content Overview}
+\tableofcontents[currentsection,hideothersubsections,sectionstyle=show/hide,        subsectionstyle=show/shaded/hide]
+\end{frame}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Design fuer Aufzaehlungen                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{enumerate items}[square]
+\setbeamertemplate{itemize items}[square]
