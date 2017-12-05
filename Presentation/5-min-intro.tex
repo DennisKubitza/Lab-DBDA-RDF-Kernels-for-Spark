@@ -30,30 +30,48 @@ We want to apply Machine learning algorithms on RDF.
 \item Rescource Description Frameworks (RDF) impose a Graph structure on the Data \pause
 \item Machine learning algorithms are optimzed on certain Data Structures (Tables etc.)
 \end{itemize}
+\textbf{Problem!}
+\pause
+\\
+\textbf{Solutions}:
+\begin{enumerate}
+\item Rewrite the ML-Algorithms for RDF Data
+\item Try to transform the RDF Data that it suits ML-Algorithms
+\end{enumerate}
 
 \end{frame}
 \begin{frame}[fragile,t]
-\frametitle{Kernel based machine learning}
+\frametitle{Kernels mathematically}
 \begin{comment}
 We want to consider a certain class of Machine learing Algorithms: Kernel based ones.
 \end{comment}
 
-Kernels ...
+
+\begin{comment}
 \begin{itemize}
-\item ... summarize Data-pairs as a single scalar value $K()\in \mathbb{R}$
+
+\item ... summarize Data-pairs as a single scalar value $K(d,d)\in \mathbb{R}$
 \pause
 \item ... can be used to embed Data in higher-spaced rooms.
 \pause
-\item ... can be used directly for machine-learning concepts like NNS, NN, SVMs, .
+\item ... can be used directly for machine-learning concepts like NNS, some NN, SVMs.
 \pause
 \end{itemize}
+\end{comment}
 \begin{block}{Definition}
-Let $D$ be the Space of Data, $\psi: D \rightarrow F$ a mapping representing the Data as $F \subset \mathbb{R}^n$. A function with a represenation \\
+Let $D$ be the Space of Data, $\psi: D \rightarrow F$ a mapping representing the Data as $F \subset \mathbb{R}^n$. A function K with a represenation \\
 
 \[ K: D \times  D  \rightarrow \ \mathbb{R}\]
 \[ K(d_1,d_2)\ =\ <\psi(d_1),\psi(d_2)> \]
 is called Kernel.
 \end{block}
+
+Short version: 
+\begin{enumerate}
+\item We take our Data $d_1$, $d_2$
+\item We transfer them to real-valued vectors $\psi(d_1),\psi(d_2)$
+\item We apply a scalar product.
+\end{enumerate}
 
 \end{frame}
 
@@ -67,18 +85,19 @@ What is D ?
 \begin{itemize} \pause
 \item $D = \{G', G' \subset G\}$
 \end{itemize}
-What Kernels exists on can we define for Graphs ? \pause
+What Kernels can we define for Graphs? \pause
+\vspace{5pt}
+Lösch et al. proposed for different suitable kernels.
 \begin{enumerate}
-\item Walk Kernel (of maximimum path length l)
-\item Path Kernel (of maximimum path length l)
-\item Full Subtree Kernel (of depth d)
-\item Partial Subtree Kernel (of depth d)
+\item Walk Kernel
+\item Path Kernel
+\item Full Subtree Kernel
+\item Partial Subtree Kernel
 \end{enumerate}
-These are the examples provided by the authors. Of course infinite many definitions can be made.
 \end{frame}
 
 \begin{frame}[fragile, t]
-\frametitle{Example}
+\frametitle{Example: The path kernel}
 \begin{center}
 \begin{tikzpicture}
   \draw[thick,rounded corners=1pt] (1,1) -- (3,2.5);
@@ -100,21 +119,22 @@ These are the examples provided by the authors. Of course infinite many definiti
   \draw[fill=red] (0,1.5) circle (0.25cm);
   \end{tikzpicture}
 \end{center}
-\[\kappa_{l,\lambda}=\sum_{i=1}^l |\{p | p \in paths_i(G_1 \cap G_2) \} \]
+\[\kappa_{l,\lambda}=\sum_{i=1}^l \lambda^i |\{p | p \in paths_i(G_1 \cap G_2) \} \]
 \end{frame}
 
 
 \subsection{Relevance}
 \begin{frame}[fragile, t]
 \frametitle{Example}
-Why this approach ? \\
+Why this approach ? \vspace{5pt}
 \pause
 Lösch U., Bloehdorn, S., Rettinger, A. showed that this approach of applying Graph Kernels to RDF show almost the same peformance as retailoring ML algorithms to RDF structure.
 \end{frame}
 \section{Implementation}
 
+\subsection{General Concept}
 \begin{frame}[fragile,t]
-\frametitle{Basic Idea}
+\frametitle{Concept}
 \begin{itemize}
 \item Build an Interface for the mangement of kernel information / values. 
 \begin{itemize}
@@ -127,6 +147,7 @@ Lösch U., Bloehdorn, S., Rettinger, A. showed that this approach of applying Gr
 \end{itemize}
 \end{frame}
 
+\subsection{Ideas for Implementation}
 \begin{frame}[fragile,t]
 \frametitle{Computation of Predefined Kernels}
 \begin{itemize}
