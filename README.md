@@ -2,3 +2,4 @@
 
 - https://docs.scala-lang.org/style/
 - https://github.com/SmartDataAnalytics/MA-INF-4223-DBDA-Lab
+- https://docs.scala-lang.org/style/scaladoc.html
