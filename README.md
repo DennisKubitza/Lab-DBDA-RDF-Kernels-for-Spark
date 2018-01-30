@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/da88f5d82fdb4c08a9640d023af36442)](https://www.codacy.com/app/DennisKubitza/Lab-DBDA-RDF-Kernels-for-Spark?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DennisKubitza/Lab-DBDA-RDF-Kernels-for-Spark&amp;utm_campaign=Badge_Grade)
+
 # Lab-DBDA-RDF-Kernels-for-Spark
 
 - https://docs.scala-lang.org/style/
