@@ -1,3 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}
 \contentsline {paragraph}{\nonumberline Kernel Examples}{3}{section*.2}
-\contentsline {paragraph}{\nonumberline Psychic Costs and Human Capital Investment}{3}{section*.3}
+\contentsline {section}{\numberline {2}Problem Statement}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Walk Kernel}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Path Kernel}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Full Subtree Kernel}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Partial Subtree Kernel}{4}{subsection.2.4}
+\contentsline {paragraph}{\nonumberline Psychic Costs and Human Capital Investment}{4}{section*.3}

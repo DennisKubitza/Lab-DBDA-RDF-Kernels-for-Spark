@@ -3,48 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: apalike.bst
 Database file #1: ./bibliography/literature.bib
-Warning--I didn't find a database entry for "Dow.1992"
-Warning--I didn't find a database entry for "Hansen.1999"
-Warning--I didn't find a database entry for "Hansen.2016"
-You've used 1 entry,
+Warning--I didn't find a database entry for "mainreference"
+You've used 2 entries,
             1935 wiz_defined-function locations,
-            486 strings with 4034 characters,
-and the built_in function-call counts, 664 in all, are:
-= -- 62
-> -- 35
-< -- 1
-+ -- 11
-- -- 11
-* -- 53
-:= -- 111
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 8
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 27
-empty$ -- 46
-format.name$ -- 12
-if$ -- 140
+            486 strings with 4098 characters,
+and the built_in function-call counts, 980 in all, are:
+= -- 91
+> -- 48
+< -- 2
++ -- 15
+- -- 15
+* -- 76
+:= -- 168
+add.period$ -- 7
+call.type$ -- 2
+change.case$ -- 14
+chr.to.int$ -- 2
+cite$ -- 2
+duplicate$ -- 41
+empty$ -- 69
+format.name$ -- 19
+if$ -- 202
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 5
-pop$ -- 10
+missing$ -- 3
+newline$ -- 13
+num.names$ -- 8
+pop$ -- 19
 preamble$ -- 1
-purify$ -- 8
+purify$ -- 15
 quote$ -- 0
-skip$ -- 22
+skip$ -- 32
 stack$ -- 0
-substring$ -- 44
-swap$ -- 10
+substring$ -- 56
+swap$ -- 11
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
+type$ -- 10
 warning$ -- 0
-while$ -- 6
+while$ -- 8
 width$ -- 0
-write$ -- 17
-(There were 3 warnings)
+write$ -- 29
+(There was 1 warning)

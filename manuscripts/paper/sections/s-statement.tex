@@ -1,0 +1,53 @@
+
+\section{Problem Statement}
+A definition of Kernels, that is suitably general and applyable to all Machine Learning Algorithms, but still mathematically precise can be found in \citep{shawe}. In the Context of RDF-Graphs it is possible to reformulate this definition, as \citet{mainsource} did, bridging machine learning to feature-representation models for structured Data. 
+
+\begin{Definition}
+Let $\mathscr{X}$ be a Subgraph of an RDF-Graph and let $\phi: \mathscr{X} \Rightarrow \mathbb{R}^k$ be a feature representation. A kernel Function is given by \[k(x,y) = <\phi(x),\phi(y)>_H\], where $<\cdot,\cdot>_H $  extends $\mathbb{R}^k$ to a Hilbert space.
+\end{Definition}
+
+In the case of RDF-Data \citet{mainsource} listed four different Kernels that are in particular suitable, as they may scale to both local and global features and compute Kernels independently from the type of reference or literals given. This is due to the used feature representation, where the existance of certain characteristic subgraphs are identified with Indicator-Variables in the Feature Representation of two Subgraphs of Interest. 
+In the follwing Paragraphs we will explain them and possible problems / computation approaches, we want to consider in our implementations.
+
+\subsection{Walk Kernel}
+The path kernel corresponds to a weighted sum of the cardinality of walks up to a length l, or more formally:
+\[( \kappa_{l,\lambda)}(G_1,G_2)=\sum_{i=1}^l \lambda^i \big|\{p | p \in walks_i(G_1 \cap G_2) \} \big|  \] \cite{mainsource}. 
+Concerning the implementation it should be very easy to paralize the this process, as the addition of an Edge to a Walk is independent of its preceeding sequence of Edges. We decided to XXX . For further details we refer to \ref{Implement_Walk}.
+
+\subsection{Path Kernel}
+The Path Kernel uses the same principle as the Walk Kernel, but counts the number of paths.
+\[( \kappa_{l,\lambda)}(G_1,G_2)=\sum_{i=1}^l \lambda^i \big|\{p | p \in paths_i(G_1 \cap G_2) \} \big|  \] \cite{mainsource}. 
+As it is now not possible to use the path independence, as before, we also need to alter the the approach. Most favorable without the need of accessing previous calculations steps, e.g to check if we already visited a single node. 
+
+\subsection{Full Subtree Kernel}
+Already \citet{mainsource} mentioned that the computation of a Intersection Graph might get costly. They therefore proposed to limit the Calculations of Kernels, not on arbritary Subgraphs, but only on certain Subgraphs wich can be identified with a certain central entitiy. This enables a replacement of the Intersection Graph with other suitable structures. One of them is the so called Intersection Tree:
+
+\begin{Definition}
+XXX
+\end{Definition}
+
+We can obtain the Full Subtree Kernel by XXX to the Intersection Tree of two entities:
+
+\begin{Definition}
+XXX
+\end{Definition}
+
+The main target of computational power is now the Intersection Graph. While \citet{mainreference} propose an easy Algorithm to generate them, they did not consider the nessecarity of parralelization. In \ref{Intersection} we provide a parralized Version of the Algorithm together with interesting parts of its computation. The final enumeration of Full Subtrees can easily be paralized, as each connected subgraph of a Tree is neccesarily again a Tree. 
+
+\subsection{Partial Subtree Kernel}
+
+Like the Full Subtree Kernel, the Partial Subtree Kernel is defined by XXX on the Intersection Tree of two Entities:
+
+\begin{Definition}
+XXX
+\end{Definition}
+
+
+%
+% Examples for Basic Text formatting/ citing: 
+
+%\input{../material/fig-illustrative-robust-performance}
+
+
+
+\paragraph{Psychic Costs and Human Capital Investment} I also shed new light o

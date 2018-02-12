@@ -7,4 +7,9 @@ L{\"o}sch, U., Bloehdorn, S., and Rettinger, A. (2012).
   V., editors, {\em The Semantic Web: Research and Applications}, pages
   134--148. Springer Berlin Heidelberg, Berlin, Heidelberg.
 
+\bibitem[Shawe-Taylor and Cristianini, 2004]{shawe}
+Shawe-Taylor, J. and Cristianini, N. (2004).
+\newblock {\em Kernel methods for pattern analysis}.
+\newblock Cambridge university press.
+
 \end{thebibliography}
