@@ -7,3 +7,4 @@
 - https://docs.scala-lang.org/style/scaladoc.html
 - https://github.com/codacy/codacy-scalameta
 - http://wiki.dbpedia.org/data-set-20
+- http://wiki.dbpedia.org/data-set-32 // Person and Infobox are suitable for Testing
