@@ -2,12 +2,9 @@
 %------------------------------------------------------------------------------
 \section{Introduction}
 %------------------------------------------------------------------------------
-While each every Machine Learning Task is defined by its Input Set, it's Set of valid models and the expected behaviour of the learning Agent, some algorithms exist that solve problems under such general assumtpions that almost any Data-dependet Problem can be reduced to fit their requirements. Kernel-based Machine learning methods don't require any specific structure for the Data, solomly that a scalar valued function exists, suitable for summarizing a Observation or Subobservation as a single value. We call such a function a kernel Functions. Before stating a mathematic exact definition, applyable to even the most general settings we are taking a look on some examples where Kernel-Based Machine learning is applied to RDF. 
+While each and every Machine Learning Task is defined by its Input Set, it's Set of valid models and the expected behaviour of the learning Agent, some algorithms exist that solve problems under such general assumtpions that almost any Data-dependent Problem can be reduced to fit their requirements. Kernel-based Machine learning methods don't require any specific structure for the Data, solomly that a scalar valued function exists, suitable for summarizing a Observation or Subobservation as a single value. We call such a function a kernel Functions. Especially for schema-free data like RDFs or Labeled Property Graphs such algorithms are highly valuable, as they neither enforce to refactor the data or rewrite existing algorithms and paradigmens. As Kernels only need to fullfill very basic properties, Kernel Based Machine learning is very flexible in the definition of a learning task. Espacially for Knowledge Graphs like RDFs we can implement different local and global Models in a rather easy way. 
+In the context of growing Databases the usage of Kernels for different Tasks also offers new possiblities as the calculation of Latent Feature Models, which are commonly used to analyse global relations, can get rather costly, espasacalliy	as Machine learning is need to train them. 
+In this Lab we will try to give efficient implementations for the computing some basic graph Kernels, described by \citet{mainsource}, backboned by the Spark environment.  
+This report is structured as follows: In following section \nameref{drei} we will define the Kernels in the theory, and give the idea behind the described Graph Kernels\citet{mainsource}. As we target the implementation of all 4 Kernels, we will state for each of them the problems we excepect to occur and our solution proposals. In the section \nameref{vier} we will then describe the concrete implementation of the final version of the package and the used Structures. The final part thematizing the the implementation will be \nameref{fuenf} where we describe out test procedure and the time advancements from our final version to prior/or different solution attempts of us. In the End we will provide a final statement concerning the workflow we setted up and the major diffuclties we had to cope with during the implementation.
 
-\paragraph{Kernel Examples}
-\begin{itemize}
-\item XXX
-\item XXX
-\item XXX
-\end{itemize}
 
