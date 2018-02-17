@@ -1,5 +1,7 @@
 package rdfKernels
-
+	
+import org.apache.spark._
+import org.apache.spark.graphx._
 import java.lang.System
 import java.net.URI
 import net.sansa_stack.rdf.spark.io.NTripleReader
@@ -8,6 +10,8 @@ import scala.collection.mutable
 import net.sansa_stack.rdf.spark.graph._
 import org.apache.spark.rdd.RDD
 import org.apache.spark.graphx._
+import org.apache.spark.graphx.{Graph, VertexRDD}
+import org.apache.spark.graphx.util.GraphGenerators
 
 
 object TestSuite {
@@ -36,28 +40,23 @@ object TestSuite {
     println("|   Test suite for Graph Kernels     |")
     println("======================================")
     //read triples
-    val triplesRDD = NTripleReader.load(spark, URI.create("/home/d/Desktop/intesect_small.nt"))
-    triplesRDD.take(3).foreach(println(_))
-    // convert to graphX
+    val triplesRDD = NTripleReader.load(spark, URI.create("/home/d/Desktop/data.nt"))
+    triplesRDD.take(10).foreach(println(_))
     val graph = LoadGraph(triplesRDD)
-   
-    
-    val triplesRDD2 = NTripleReader.load(spark, URI.create("/home/d/Desktop/intesect_big.nt"))
-    val graph2 = LoadGraph(triplesRDD2)
-
-    // convert to graphX
-    // val intesect = graph.subgraph(epred: (EdgeTriplet[VD, ED])  Boolean = x => true, vpred: (VertexId, VD) ⇒ Boolean = (v, d) => true): Graph[VD, ED]
-    
-    // collect neighbors
-    for (i <- 1 to 1)
-    {
-      val Neighbors: VertexRDD[Array[VertexId]] = graph.ops.collectNeighborIds(EdgeDirection.Out);
-      val Neighbors2: VertexRDD[Array[VertexId]] = graph2.ops.collectNeighborIds(EdgeDirection.Out);     
-
+    val init_paths = graph.mapVertices((id, attr) => (0, 0))
+    var rec_paths = init_paths.mapVertices((id, attr) => (1,0))
+    var paths: VertexRDD[(Int, Int)] = rec_paths.aggregateMessages[(Int, Int)]( predic => {predic.sendToDst(predic.dstAttr._1,predic.srcAttr._1)},(a, b) => (b._1,a._2 + b._2))
+    var numpaths = paths.map(_._2._2).reduce(_ + _)
+    println(numpaths)
+    for( i <- 2 to 10){
+      rec_paths =  init_paths.joinVertices(paths)((id, old_attr, new_attr) => (new_attr._2, 0))
+      paths = rec_paths.aggregateMessages[(Int, Int)]( predic => {if(predic.srcAttr._1>0) predic.sendToDst(predic.dstAttr._1,predic.srcAttr._1)},(a, b) => (b._1,a._2 + b._2))
+      numpaths = paths.map(_._2._2).reduce(_ + _)
+      println(numpaths)
     }
+    
     // Try to use own defined functions
-    val path_kernel = new rdfKernels.kernelFunctions()
-    //path_kernel.test()
+    //paths_length_l.collect.foreach(println(_))    //path_kernel.test()
     println(System.nanoTime - time)
     spark.stop
   }
