@@ -12,6 +12,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.graphx._
 import org.apache.spark.graphx.{Graph, VertexRDD}
 import org.apache.spark.graphx.util.GraphGenerators
+import org.apache.spark.sql._
 
 
 object TestSuite {
@@ -41,27 +42,40 @@ object TestSuite {
     println("======================================")
     //read triples
     val triplesRDD = NTripleReader.load(spark, URI.create("/home/d/Desktop/data.nt"))
-    triplesRDD.take(10).foreach(println(_))
-    val graph = LoadGraph(triplesRDD)
+    val triplesRDD2 = NTripleReader.load(spark, URI.create("/home/d/Desktop/data2.nt"))
+
+    val intersectRDD = triplesRDD.intersection(triplesRDD2)
+    //create an empty matrix
+    //val matrix = Array.ofDim[Int](intersectRDD.collect().length, intersectRDD.collect().length)
+   
+    val graph = LoadGraph(intersectRDD)
+    val neighbours = graph.collectNeighborIds(EdgeDirection.In)
+    
+    neighbours.take(5).foreach(println(_))
+    
+    val vertices = graph.vertices
+    vertices.take(5).foreach(println(_))
+    /*
     val init_paths = graph.mapVertices((id, attr) => (0, 0))
     var rec_paths = init_paths.mapVertices((id, attr) => (1,0))
     var paths: VertexRDD[(Int, Int)] = rec_paths.aggregateMessages[(Int, Int)]( predic => {predic.sendToDst(predic.dstAttr._1,predic.srcAttr._1)},(a, b) => (b._1,a._2 + b._2))
     var numpaths = paths.map(_._2._2).reduce(_ + _)
-    println(numpaths)
     for( i <- 2 to 10){
       rec_paths =  init_paths.joinVertices(paths)((id, old_attr, new_attr) => (new_attr._2, 0))
       paths = rec_paths.aggregateMessages[(Int, Int)]( predic => {if(predic.srcAttr._1>0) predic.sendToDst(predic.dstAttr._1,predic.srcAttr._1)},(a, b) => (b._1,a._2 + b._2))
       numpaths = paths.map(_._2._2).reduce(_ + _)
       println(numpaths)
     }
-    
+    * 
+    */
     // Try to use own defined functions
     //paths_length_l.collect.foreach(println(_))    //path_kernel.test()
     println(System.nanoTime - time)
     spark.stop
   }
 
-  case class Config(in: String = "")
+  
+case class Config(in: String = "")
 
   val parser = new scopt.OptionParser[Config]("Test Suite") {
 
