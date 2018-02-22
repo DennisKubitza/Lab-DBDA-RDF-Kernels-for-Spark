@@ -3,7 +3,7 @@
 # Lab-DBDA-RDF-Kernels-for-Spark
 
 ## Description
-Implementation of methods for computing kernel functions for intersection graphs and intersection trees. Designed to process RDF data packed in Spark Resilient Distributed Datasets.Based on and requires [SANSA-Stack](https://github.com/SANSA-Stack/) for operating.
+Implementation of methods for computing kernel functions for intersection graphs and intersection trees. Designed to process RDF data packed in Spark Resilient Distributed Datasets. Based on ideas described in [this beautiful publication](https://link.springer.com/content/pdf/10.1007%2F978-3-642-30284-8_16.pdf). Built on and requires [SANSA-Stack](https://github.com/SANSA-Stack/) for operating.
 
 ## Available methods and their usage
 
