@@ -2,9 +2,19 @@
 [![AUR](https://img.shields.io/aur/license/yaourt.svg)]()
 # Lab-DBDA-RDF-Kernels-for-Spark
 
-- https://docs.scala-lang.org/style/
-- https://github.com/SmartDataAnalytics/MA-INF-4223-DBDA-Lab
-- https://docs.scala-lang.org/style/scaladoc.html
-- https://github.com/codacy/codacy-scalameta
-- http://wiki.dbpedia.org/data-set-20
-- http://wiki.dbpedia.org/data-set-32 // Person and Infobox are suitable for Testing
+##Description
+Implementation of methods for computing kernel functions for intersection graphs and intersection trees. Designed to process RDF data packed in Spark Resilient Distributed Datasets. Based on and requires [SANSA-Stack](https://github.com/SANSA-Stack/) for operating.
+
+##Available methods and their usage
+
+```scala
+/**
+ 	* Calculates adjacency matrix for intersection of two RDF graphs.
+ 	* @param firstRDD Resilient Distributed Dataset containing entries of RDF triples.
+ 	* @param secondRDD Resilient Distributed Dataset containing entries of RDF triples.
+ 	* @return CoordinateMatrix containing '1' at the positions where edges exist and '0'
+ 	* otherwise.
+ 	*/
+  def intersectionAdjacencyMatrix(firstRDD: RDD[Triple], secondRDD: RDD[Triple]) : CoordinateMatrix
+```
+
